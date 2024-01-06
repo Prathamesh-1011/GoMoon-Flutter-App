@@ -16,15 +16,22 @@ class HomePage extends StatelessWidget {
         child: Container(
           height: _deviceHeight,
           width: _deviceWidth,
-          padding: EdgeInsets.symmetric(horizontal: _deviceWidth * 0.12),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.start,
+          padding: EdgeInsets.symmetric(horizontal: _deviceWidth * 0.1),
+          child: Stack(
             children: [
-              _pageTitle(),
-              _destinationDropDownWidget(),
-              _travellersInformationWidget(),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _pageTitle(),
+                  _bookRideWidget(),
+                ],
+              ),
+              Align(
+                alignment: Alignment.centerRight,
+                child: _astroImageWidget(),
+              )
             ],
           ),
         ),
@@ -45,6 +52,8 @@ class HomePage extends StatelessWidget {
 
   Widget _astroImageWidget() {
     return Container(
+      height: _deviceHeight * 0.5,
+      width: _deviceWidth * 0.65,
       decoration: const BoxDecoration(
         image: DecorationImage(
           fit: BoxFit.fill,
@@ -57,10 +66,27 @@ class HomePage extends StatelessWidget {
   Widget _destinationDropDownWidget() {
     return CustomDropDownButtonClass(
       values: const [
-        "Indian Space Station",
-        "NASA Space Station",
+        "Tiangong Space Station",
+        "Lunar Orbital Station",
+        "International Space Station",
       ],
       width: _deviceWidth,
+    );
+  }
+
+  Widget _bookRideWidget() {
+    return Container(
+      height: _deviceHeight * 0.25,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisSize: MainAxisSize.max,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          _destinationDropDownWidget(),
+          _travellersInformationWidget(),
+          _rideButton(),
+        ],
+      ),
     );
   }
 
@@ -88,6 +114,26 @@ class HomePage extends StatelessWidget {
           width: _deviceWidth * 0.40,
         ),
       ],
+    );
+  }
+
+  Widget _rideButton() {
+    return Container(
+      margin: EdgeInsets.only(bottom: _deviceHeight * 0.04),
+      width: _deviceWidth,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: MaterialButton(
+        onPressed: () {},
+        child: const Text(
+          "Book Ride !",
+          style: TextStyle(
+            color: Colors.black,
+          ),
+        ),
+      ),
     );
   }
 }
