@@ -14,7 +14,16 @@ class HomePage extends StatelessWidget {
         child: Container(
           height: _deviceHeight,
           width: _deviceWidth,
-          child: _pageTitle(),
+          padding: EdgeInsets.symmetric(horizontal: _deviceWidth * 0.12),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _pageTitle(),
+              _destinationDropDownWidget(),
+            ],
+          ),
         ),
       ),
     );
@@ -38,6 +47,26 @@ class HomePage extends StatelessWidget {
           fit: BoxFit.fill,
           image: AssetImage("assets/images/astro_moon.png"),
         ),
+      ),
+    );
+  }
+
+  Widget _destinationDropDownWidget() {
+    List<DropdownMenuItem<String>> _items = [
+      "Indian Web Station",
+      "NASA Web Station",
+    ].map(
+      (e) {
+        return DropdownMenuItem(
+          value: e,
+          child: Text(e),
+        );
+      },
+    ).toList();
+    return Container(
+      child: DropdownButton(
+        onChanged: (_) {},
+        items: _items,
       ),
     );
   }
