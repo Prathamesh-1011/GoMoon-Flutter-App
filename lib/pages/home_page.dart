@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_moon/widgets/custom_dropdown_button.dart';
 
+// ignore: must_be_immutable
 class HomePage extends StatelessWidget {
   late double _deviceHeight, _deviceWidth;
 
@@ -22,6 +24,7 @@ class HomePage extends StatelessWidget {
             children: [
               _pageTitle(),
               _destinationDropDownWidget(),
+              _travellersInformationWidget(),
             ],
           ),
         ),
@@ -52,46 +55,39 @@ class HomePage extends StatelessWidget {
   }
 
   Widget _destinationDropDownWidget() {
-    List<String> _items = [
-      "Indian Web Station",
-      "NASA Web Station",
-    ];
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: _deviceWidth * 0.05),
+    return CustomDropDownButtonClass(
+      values: const [
+        "Indian Space Station",
+        "NASA Space Station",
+      ],
       width: _deviceWidth,
-      decoration: BoxDecoration(
-        color: const Color.fromRGBO(
-          53,
-          53,
-          53,
-          1.0,
+    );
+  }
+
+  Widget _travellersInformationWidget() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisSize: MainAxisSize.max,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        CustomDropDownButtonClass(
+          values: const [
+            "1",
+            "2",
+            "3",
+            "4",
+          ],
+          width: _deviceWidth * 0.35,
         ),
-        borderRadius: BorderRadius.circular(
-          10,
+        CustomDropDownButtonClass(
+          values: const [
+            "Economy",
+            "First",
+            "Business",
+          ],
+          width: _deviceWidth * 0.40,
         ),
-      ),
-      child: DropdownButton(
-        value: _items.first,
-        onChanged: (_) {},
-        items: _items.map(
-          (e) {
-            return DropdownMenuItem(
-              value: e,
-              child: Text(e),
-            );
-          },
-        ).toList(),
-        underline: Container(),
-        dropdownColor: const Color.fromRGBO(
-          53,
-          53,
-          53,
-          1.0,
-        ),
-        style: const TextStyle(
-          color: Colors.white,
-        ),
-      ),
+      ],
     );
   }
 }
