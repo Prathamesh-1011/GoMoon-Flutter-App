@@ -52,21 +52,45 @@ class HomePage extends StatelessWidget {
   }
 
   Widget _destinationDropDownWidget() {
-    List<DropdownMenuItem<String>> _items = [
+    List<String> _items = [
       "Indian Web Station",
       "NASA Web Station",
-    ].map(
-      (e) {
-        return DropdownMenuItem(
-          value: e,
-          child: Text(e),
-        );
-      },
-    ).toList();
+    ];
     return Container(
+      padding: EdgeInsets.symmetric(horizontal: _deviceWidth * 0.05),
+      width: _deviceWidth,
+      decoration: BoxDecoration(
+        color: const Color.fromRGBO(
+          53,
+          53,
+          53,
+          1.0,
+        ),
+        borderRadius: BorderRadius.circular(
+          10,
+        ),
+      ),
       child: DropdownButton(
+        value: _items.first,
         onChanged: (_) {},
-        items: _items,
+        items: _items.map(
+          (e) {
+            return DropdownMenuItem(
+              value: e,
+              child: Text(e),
+            );
+          },
+        ).toList(),
+        underline: Container(),
+        dropdownColor: const Color.fromRGBO(
+          53,
+          53,
+          53,
+          1.0,
+        ),
+        style: const TextStyle(
+          color: Colors.white,
+        ),
       ),
     );
   }
